@@ -17,10 +17,13 @@ class App extends Component {
   }
 
   handleSubmit(event) {
+    event.preventDefault();
+
+    if (this.state.value === '' || this.state.value === undefined) return
+
     this.state.listOne.push(this.state.value)
     this.setState({value: this.state.value});
-    alert('Familia ' + this.state.value+' este adaugata la lista de duminica dimineata');
-    event.preventDefault();
+    alert('Familia ' + this.state.value + ' este adaugata la lista de duminica dimineata');
   }
 
   render() {
