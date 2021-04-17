@@ -24,17 +24,25 @@ class App extends Component {
   }
 
   handleSubmit(event) {
-    this.state.listOne.push({familyName: this.state.nameInput,amount : this.state.amount })
+    this.state.listOne.push({familyName: this.state.nameInput, amount: this.state.amount})
     this.setState({...this.state});
     alert('Familia ' + this.state.nameInput + ' este adaugata la lista de duminica dimineata');
     console.log(this.state);
     event.preventDefault();
   }
 
+  availablePlaces() {
+    let total=15;
+    this.state.listOne.map(p => p.amount).forEach(a => total-=a)
+    return total
+  }
+
   render() {
+
+    let availablePlaces = this.availablePlaces();
     return (
       <>
-        <h2>Lista de dimineață</h2>
+        <h2>Lista de dimineață ({availablePlaces} locuri libere)</h2>
         <form onSubmit={this.handleSubmit}>
           <div>
             <label>
