@@ -1,6 +1,7 @@
 import './App.css';
 import {Component} from "react";
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -24,16 +25,23 @@ class App extends Component {
   }
 
   handleSubmit(event) {
-    this.state.listOne.push({familyName: this.state.nameInput, amount: this.state.amount})
-    this.setState({...this.state});
-    alert('Familia ' + this.state.nameInput + ' este adaugata la lista de duminica dimineata');
-    console.log(this.state);
-    event.preventDefault();
+    if (this.state.nameInput == undefined || this.state.nameInput == "") {
+      event.preventDefault();
+    } else if (this.state.amount > this.availablePlaces()) {
+      alert("Nu vă puteți înscrie cu " + this.state.amount + " persoane. Sunt doar " + this.availablePlaces() + " locuri libere")
+    } else {
+
+      this.state.listOne.push({familyName: this.state.nameInput, amount: this.state.amount})
+      this.setState({...this.state});
+      alert('Familia ' + this.state.nameInput + ' este adaugata la lista de duminica dimineata');
+      console.log(this.state);
+      event.preventDefault();
+    }
   }
 
   availablePlaces() {
-    let total=15;
-    this.state.listOne.map(p => p.amount).forEach(a => total-=a)
+    let total = 15;
+    this.state.listOne.map(p => p.amount).forEach(a => total -= a)
     return total
   }
 
@@ -41,7 +49,7 @@ class App extends Component {
 
     let availablePlaces = this.availablePlaces();
     return (
-      <>
+      <div className={"list"}>
         <h2>Lista de dimineață ({availablePlaces} locuri libere)</h2>
         <form onSubmit={this.handleSubmit}>
           <div>
@@ -56,7 +64,7 @@ class App extends Component {
               <input type="number" name="amount" value={this.state.amount} onChange={this.handleChange}/>
             </label>
           </div>
-          <input type="submit" value="Submit"/>
+          <input type="submit" value="Trimite"/>
         </form>
         <div>
           <ul>
@@ -65,7 +73,7 @@ class App extends Component {
             ))}
           </ul>
         </div>
-      </>);
+      </div>);
   }
 }
 

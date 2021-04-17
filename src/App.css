@@ -2,6 +2,17 @@
   text-align: center;
 }
 
+h1 {
+  background: #2186f3;
+  color: white;
+  padding: 2rem;
+}
+
+.list {
+  padding: 2rem;
+  border: 1px solid gray;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
