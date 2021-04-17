@@ -26,7 +26,7 @@ class App extends Component {
   render() {
     return (
       <>
-        <h2>Lista de duminica dimineata</h2>
+        <h2>Lista de dimineață</h2>
         <form onSubmit={this.handleSubmit}>
           <label>
             Numele de familie:<br/>
