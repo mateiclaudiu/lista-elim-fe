@@ -5,7 +5,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: [1, 2, 3]
+      listOne: []
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -17,25 +17,26 @@ class App extends Component {
   }
 
   handleSubmit(event) {
-    this.state.list.push(this.state.value)
+    this.state.listOne.push(this.state.value)
     this.setState({value: this.state.value});
-    alert('A name was submitted: ' + this.state.value);
+    alert('Familia ' + this.state.value+' este adaugata la lista de duminica dimineata');
     event.preventDefault();
   }
 
   render() {
     return (
       <>
+        <h2>Lista de duminica dimineata</h2>
         <form onSubmit={this.handleSubmit}>
           <label>
-            Name:
+            Numele de familie:<br/>
             <input type="text" value={this.state.value} onChange={this.handleChange}/>
           </label>
           <input type="submit" value="Submit"/>
         </form>
         <div>
           <ul>
-            {this.state.list.map(item => (
+            {this.state.listOne.map(item => (
               <li key={item}>{item}</li>
             ))}
           </ul>
